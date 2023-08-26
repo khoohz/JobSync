@@ -1,0 +1,30 @@
+# GET http://localhost:5001/applications
+
+# POST http://localhost:5001/applications
+# Content-Type: application/json
+
+# {
+#   "userId": "63701cc1f03239c72c00017f",
+#   "position": "electrical engineer",
+#   "department": "",
+#   "company": "Xnergy",
+#   "location": "Malaysia",
+#   "description": "this is a good company",
+#   "status": "Applied"
+# }
+
+PUT http://localhost:5001/applications/64ce0de7e6fba9f3db969477
+Content-Type: application/json
+
+{
+  "userId": "63701cc1f03239c72c00017f",
+  "position": "biomedical engineer",
+  "department": "",
+  "company": "Xnergy",
+  "location": "Malaysia",
+  "description": "this is a good company",
+  "status": "Applied"
+}
+
+# DELETE http://localhost:5001/applications/64ce0dbfe6fba9f3db969474
+
