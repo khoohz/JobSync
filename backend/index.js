@@ -11,28 +11,14 @@ import { fileURLToPath } from "url";
 import { verifyToken } from "./middleware/auth.js";
 
 import { register } from "./controllers/auths.js";
-import { createApplication, deleteApplication, updateApplication } from "./controllers/applications.js";
+import { updateTaskPosition } from "./controllers/tasks.js";
 
 import authRoutes from "./routes/auth.js";
 import applicationRoutes from "./routes/application.js";
 import taskRoutes from "./routes/task.js";
 import contactRoutes from "./routes/contact.js";
 import companyRoutes from "./routes/company.js";
-
-import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
-import managementRoutes from "./routes/management.js";
-import salesRoutes from "./routes/sales.js";
-
-import {
-  dataUser,
-  dataApplication,
-
-} from "./datas/index.js";
-
-import { createTask, deleteTask, updateTask, updateTaskPosition } from "./controllers/tasks.js";
-
-
 
 // Configuration
 const __filename = fileURLToPath(import.meta.url);
@@ -62,15 +48,7 @@ const upload = multer({ storage }); // upload to local storage
 
 // routes with files
 app.post("/auth/register", upload.single("picture"), register);
-app.post("/applications", verifyToken, createApplication)
-app.delete("/applications", verifyToken, deleteApplication);
-app.put("/applications/update/:appId", verifyToken, updateApplication);
-
-app.post("/tasks", verifyToken, createTask)
-app.delete("/tasks", verifyToken, deleteTask);
-app.put("/tasks/update/:appId", verifyToken, updateTask);
 app.put("/tasks/update-position", verifyToken, updateTaskPosition);
-
 
 // Routes
 app.use("/auth", authRoutes);
@@ -79,10 +57,6 @@ app.use("/applications", applicationRoutes);
 app.use("/contacts", contactRoutes)
 app.use("/companies", companyRoutes)
 app.use("/tasks", taskRoutes)
-
-app.use("/client", clientRoutes);
-app.use("/management", managementRoutes);
-app.use("/sales", salesRoutes);
 
 // MONGOOSE Setup
 const PORT = process.env.PORT || 9000;
@@ -95,12 +69,5 @@ mongoose
     app.listen(PORT, () =>
       console.log(`Connected to MongoDB, server port: ${PORT}`)
     );
-
-    // Application.insertMany(dataApplication);
-    // User.insertMany(dataUser);
-    // Product.insertMany(dataProduct);
-    // ProductStat.insertMany(dataProductStat);
-    // Transaction.insertMany(dataTransaction);
-    // AffiliateStat.insertMany(dataAffiliateStat);
   })
   .catch((error) => console.log("error message: ", error.message));
