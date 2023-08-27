@@ -58,10 +58,6 @@ app.use("/contacts", contactRoutes)
 app.use("/companies", companyRoutes)
 app.use("/tasks", taskRoutes)
 
-app.get('/', (req, res) => {
-  res.sendStatus(200)
-})
-
 // MONGOOSE Setup
 const PORT = process.env.PORT || 9000;
 mongoose
