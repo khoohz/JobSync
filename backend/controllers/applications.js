@@ -1,5 +1,4 @@
 import Application from "../models/Application.js";
-import User from "../models/User.js";
 
 export const createApplication = async (req, res) => {
   try {
@@ -93,7 +92,6 @@ export const updateApplication = async (req, res) => {
 export const deleteApplication = async (req, res) => {
   try {
     const {appIds} = req.body;
-    console.log("🚀 ~ file: applications.js:76 ~ deleteApplication ~ appIds:", appIds)
 
     await Application.deleteMany({ _id: { $in: appIds } });
 
