@@ -33,6 +33,7 @@ app.use(morgan("common")); //make api calls from another server
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+app.use("/auth", authRoutes);
 
 // file storage
 const storage = multer.diskStorage({
@@ -51,7 +52,6 @@ app.post("/auth/register", upload.single("picture"), register);
 app.put("/tasks/update-position", verifyToken, updateTaskPosition);
 
 // Routes
-app.use("/auth", authRoutes);
 app.use("/general", generalRoutes); //users and dashboard
 app.use("/applications", applicationRoutes);
 app.use("/contacts", contactRoutes);
@@ -62,9 +62,6 @@ app.get("/", (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/auth/login", (req, res) => {
-  res.sendStatus(200);
-});
 
 // MONGOOSE Setup
 const PORT = process.env.PORT || 9000;
