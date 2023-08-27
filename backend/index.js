@@ -62,6 +62,10 @@ app.get("/", (req, res) => {
   res.sendStatus(200);
 });
 
+app.get("/auth/login", (req, res) => {
+  res.sendStatus(200);
+});
+
 // MONGOOSE Setup
 const PORT = process.env.PORT || 9000;
 mongoose
