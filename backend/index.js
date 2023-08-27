@@ -54,13 +54,13 @@ app.put("/tasks/update-position", verifyToken, updateTaskPosition);
 app.use("/auth", authRoutes);
 app.use("/general", generalRoutes); //users and dashboard
 app.use("/applications", applicationRoutes);
-app.use("/contacts", contactRoutes)
-app.use("/companies", companyRoutes)
-app.use("/tasks", taskRoutes)
+app.use("/contacts", contactRoutes);
+app.use("/companies", companyRoutes);
+app.use("/tasks", taskRoutes);
 
 app.get("/", (req, res) => {
-  res.statusCode(200)
-})
+  res.sendStatus(200);
+});
 
 // MONGOOSE Setup
 const PORT = process.env.PORT || 9000;
