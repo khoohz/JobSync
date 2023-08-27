@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <Box>
-      <Box p="3rem 0 0 3rem" sx={{ width: "15rem" }}>
+      <Box p="3rem 0 0 3rem" sx={{ width: "12rem" }}>
         <FlexBetween>
           <Logo />
           <Box textAlign="left">
@@ -51,11 +51,21 @@ const Login = () => {
             fontWeight="500"
             variant="h5"
             textAlign={isNonMobile ? "" : "center"}
-            sx={{ mb: "2rem", color: theme.palette.font.light }}
+            sx={{ mb: "0.5rem", color: theme.palette.font.light }}
           >
             {pageType === "login"
               ? "Navigating Your Career Journey Together"
               : "Empowering Your Job Search Efforts"}
+          </Typography>
+          <Typography
+            fontWeight="500"
+            variant="h6"
+            textAlign={isNonMobile ? "" : "center"}
+            sx={{ mb: "1rem", color: theme.palette.primary.main }}
+          >
+            {pageType === "login"
+              ? "*Recommended browser size: 80%"
+              : ""}
           </Typography>
           <Form
             onPageTypeChange={handlePageTypeChange}
