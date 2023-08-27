@@ -26,12 +26,6 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(cors());
-const corsOptions = {
-  origin: "https://jobsync.onrender.com", 
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-}
-app.use(cors(corsOptions));
-
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
