@@ -12,7 +12,6 @@ const LoadingImg = ({content}) => {
       alignItems="center"
       justifyContent="center"
       alignContent="center"
-      m="1rem"
       top="30%"
       left="30%"
     >

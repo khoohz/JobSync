@@ -398,14 +398,14 @@ const Contacts = () => {
           )}
 
           {isLoading && ( // Check if loading
-            <Box mt="28vh">
+            <Box mt="25vh">
               <LoadingImg content="Loading contacts ..." />
             </Box>
           )}
 
           {data.length === 0 &&
             !isLoading && ( // Check if data is empty and not loading
-              <Box mt="28vh">
+              <Box mt="25vh">
                 <LoadingImg content="No contact" />
               </Box>
             )}
