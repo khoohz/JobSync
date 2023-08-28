@@ -297,7 +297,7 @@ const Companies = () => {
               </Button>
             </Box>
           </FlexBetween>
-          {data.length > 0 && (
+          {data.length > 0 && !isLoading && (
             <Box
               mt="1.25rem"
               mr="2.5rem"
@@ -350,17 +350,16 @@ const Companies = () => {
             />
           )}
 
+          {isLoading && ( // Check if loading
+            <Box mt="28vh">
+              <LoadingImg content="Loading companies ..." />
+            </Box>
+          )}
+
           {data.length === 0 &&
             !isLoading && ( // Check if data is empty and not loading
               <Box mt="28vh">
                 <LoadingImg content="No company" />
-              </Box>
-            )}
-
-          {data.length > 0 &&
-            isLoading && ( // Check if loading
-              <Box mt="28vh">
-                <LoadingImg content="Loading companies ..." />
               </Box>
             )}
         </Box>

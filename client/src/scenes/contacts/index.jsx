@@ -397,17 +397,16 @@ const Contacts = () => {
             />
           )}
 
+          {isLoading && ( // Check if loading
+            <Box mt="28vh">
+              <LoadingImg content="Loading contacts ..." />
+            </Box>
+          )}
+
           {data.length === 0 &&
             !isLoading && ( // Check if data is empty and not loading
               <Box mt="28vh">
                 <LoadingImg content="No contact" />
-              </Box>
-            )}
-
-          {data.length > 0 &&
-            isLoading && ( // Check if loading
-              <Box mt="28vh">
-                <LoadingImg content="Loading contacts ..." />
               </Box>
             )}
         </Box>
