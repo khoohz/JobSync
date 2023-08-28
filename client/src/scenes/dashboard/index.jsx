@@ -25,10 +25,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const isNonMediumScreen = useMediaQuery("(min-width: 1300px");
   const applications = useSelector((state) => state.auth.applications);
-  console.log(
-    "🚀 ~ file: index.jsx:28 ~ Dashboard ~ applications:",
-    applications
-  );
   
   const task = useSelector((state) => state.auth.task);
   const { data: taskData } = useGetTaskStatusQuery();

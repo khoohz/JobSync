@@ -18,10 +18,7 @@ const Applications = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const applications = useSelector((state) => state.auth.applications);
-  console.log(
-    "🚀 ~ file: index.jsx:31 ~ Applications ~ applications:",
-    applications
-  );
+
   const mode = useSelector((state) => state.auth.mode);
   const isLightMode = mode === "light";
   const [isFormOpen, setIsFormOpen] = useState(false);

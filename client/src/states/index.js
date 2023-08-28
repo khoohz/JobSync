@@ -47,7 +47,6 @@ export const authSlice = createSlice({
       state.applications = state.applications.filter(
         (application) => !delAppIds.includes(application._id)
       );
-      console.log("🚀 ~ file: index.js:46 ~ state.applications:", state.applications)
     },
     setTask: (state, action) => {
       state.task = action.payload.task;
