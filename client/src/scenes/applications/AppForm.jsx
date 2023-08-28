@@ -72,13 +72,11 @@ const AppForm = ({ handleCloseForm }) => {
     onSubmitProps.resetForm();
     handleCloseForm();
 
-    const [newApplication] = savedApp.data.slice(-1);
+    const newApplication = savedApp.data;
 
-    if (savedApp && applications.length !== 0) {
+    if (savedApp) {
       dispatch(setApplications({ applications: newApplication}));
-    } else {
-      dispatch(setApplications({ applications: [newApplication]}));
-    }
+    } 
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
@@ -271,7 +269,7 @@ const AppForm = ({ handleCloseForm }) => {
                 sx={{
                   m: "2rem 0 1rem 0",
                   p: "1rem",
-                  backgroundColor: theme.palette.primary.light,
+                  backgroundColor: theme.palette.primary.dark,
                   color: theme.palette.primary.main,
                   borderRadius: "0.625rem",
                   fontSize: "16px",

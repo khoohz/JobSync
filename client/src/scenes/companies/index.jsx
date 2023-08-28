@@ -286,7 +286,7 @@ const Companies = () => {
               boxShadow: "none",
               "&:hover": {
                 color: theme.palette.primary.main,
-                backgroundColor: theme.palette.primary.light,
+                backgroundColor: theme.palette.primary.dark,
                 boxShadow: "none",
               },
             }}

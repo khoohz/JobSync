@@ -5,7 +5,7 @@ const initialState = {
   user: null,
   token: null,
   applications: [],
-  application: [],
+  application: [], 
   task:[],
 };
 
@@ -21,17 +21,18 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
-    setLogout: (state) => {
-      state.user = null;
-      state.token = null;
-    },
+    setLogout: () => initialState,
     setApplications: (state, action) => {
+      const newApplications = action.payload.applications.filter(
+        (newApp) => !state.applications.some((app) => app._id === newApp._id)
+      );
+
       if (state.applications.length === 0) {
-        state.applications = action.payload.applications;
+        state.applications = newApplications;
       } else {
         state.applications = [
           ...state.applications,
-          action.payload.applications,
+          ...newApplications,
         ];
       }
     },
@@ -46,6 +47,7 @@ export const authSlice = createSlice({
       state.applications = state.applications.filter(
         (application) => !delAppIds.includes(application._id)
       );
+      console.log("🚀 ~ file: index.js:46 ~ state.applications:", state.applications)
     },
     setTask: (state, action) => {
       state.task = action.payload.task;

@@ -1,63 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  useGetApplicationsQuery,
-  useDeleteApplicationMutation,
-} from "states/api";
-import { setApplications, delApplications } from "states";
+import { useDeleteApplicationMutation } from "states/api";
+import { delApplications } from "states";
 import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
-import {
-  Box,
-  useTheme,
-  Button,
-  Dialog,
-  IconButton
-} from "@mui/material";
+import { Box, useTheme, Button, Dialog, IconButton } from "@mui/material";
 import Header from "components/Header";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import AppForm from "./AppForm";
 import FlexBetween from "components/FlexBetween";
 import CustomNoRowsOverlay from "components/CustomNoRowsOverlay";
-import { useNavigate  } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const Applications = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
   const applications = useSelector((state) => state.auth.applications);
+  console.log(
+    "🚀 ~ file: index.jsx:31 ~ Applications ~ applications:",
+    applications
+  );
   const mode = useSelector((state) => state.auth.mode);
   const isLightMode = mode === "light";
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const { data, isLoading } = useGetApplicationsQuery();
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [delApplication] = useDeleteApplicationMutation();
-
-
-  useEffect(() => {
-    const getApplication = async () => {
-      try {
-        if (applications.length === 0 && data) {
-          dispatch(setApplications({ applications: data }));
-        } 
-      } catch (error) {
-        alert(error);
-      }
-    };
-    getApplication();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, dispatch]); 
 
   const deleteApp = async () => {
     try {
       const deleted = await delApplication({ appIds: rowSelectionModel });
-    if (deleted) {
-      dispatch(delApplications({ applications: rowSelectionModel }));
-    }
+      if (deleted) {
+        dispatch(delApplications({ applications: rowSelectionModel }));
+      }
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   };
 
@@ -72,7 +50,7 @@ const Applications = () => {
   const handleCloseForm = () => {
     setIsFormOpen(false);
   };
-  
+
   const handleEditApplication = (appId) => {
     navigate(`/applications/${appId}`);
   };
@@ -129,7 +107,7 @@ const Applications = () => {
             variant="contained"
             onClick={() => handleEditApplication(params.row._id)}
           >
-            <EditOutlinedIcon sx={{color: theme.palette.primary.main}}/>
+            <EditOutlinedIcon sx={{ color: theme.palette.primary.main }} />
           </IconButton>
         );
       },
@@ -148,7 +126,7 @@ const Applications = () => {
                 startIcon={<DeleteOutlinedIcon />}
                 onClick={() => handleDelete()}
                 sx={{
-                  p: "0.5rem 1rem",
+                  p: "0.5rem 1rem 0.4rem 1rem",
                   backgroundColor: "#FF3D6E",
                   color: theme.palette.background.alt,
                   borderRadius: "0.625rem",
@@ -158,7 +136,7 @@ const Applications = () => {
                   boxShadow: "none",
                   "&:hover": {
                     color: "#FF295E",
-                    backgroundColor: theme.palette.primary.light,
+                    backgroundColor: "#FFBDCD",
                     boxShadow: "none",
                   },
                 }}
@@ -181,7 +159,7 @@ const Applications = () => {
                 boxShadow: "none",
                 "&:hover": {
                   color: theme.palette.primary.main,
-                  backgroundColor: theme.palette.primary.light,
+                  backgroundColor: theme.palette.primary.dark,
                   boxShadow: "none",
                 },
               }}
@@ -233,7 +211,7 @@ const Applications = () => {
         <DataGrid
           rows={applications || []}
           columns={columns}
-          loading={isLoading || !applications}
+          loading={!applications}
           getRowId={(row) => row._id}
           rowHeight={55}
           checkboxSelection

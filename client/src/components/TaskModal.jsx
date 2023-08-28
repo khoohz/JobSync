@@ -360,7 +360,7 @@ const TaskModal = ({ data, closeTask }) => {
           <div
             id="editor.js"
             ml="1rem"
-            style={{ maxHeight: "58vh", overflowY: "auto" }}
+            style={{ maxHeight: "54vh", overflowY: "auto" }}
           ></div>
         </Box>
       </Zoom>

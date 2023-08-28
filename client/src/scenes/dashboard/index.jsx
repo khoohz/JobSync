@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetDashboardAppsQuery, useGetTaskStatusQuery } from "states/api";
-import { setApplications, setTask } from "states";
+import { useGetTaskStatusQuery, useGetApplicationsQuery } from "states/api";
+import { setTask, setApplications } from "states";
 import { DataGrid } from "@mui/x-data-grid";
 import {
   Box,
@@ -25,26 +25,28 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const isNonMediumScreen = useMediaQuery("(min-width: 1300px");
   const applications = useSelector((state) => state.auth.applications);
+  console.log(
+    "🚀 ~ file: index.jsx:28 ~ Dashboard ~ applications:",
+    applications
+  );
+  
   const task = useSelector((state) => state.auth.task);
   const { data: taskData } = useGetTaskStatusQuery();
-  const { data: appData, isLoading: appLoading } = useGetDashboardAppsQuery();
-
+  const { data: appData, isLoading: appLoading, refetch } = useGetApplicationsQuery({
+    onSuccess: (data) => {
+      if (data.length > 0) {
+        console.log("trigger");
+        dispatch(setApplications({ applications: data }));
+      }
+    }
+  });
   const mode = useSelector((state) => state.auth.mode);
   const isLightMode = mode === "light";
 
   useEffect(() => {
-    const getApplication = async () => {
-      try {
-        if (applications.length === 0 && appData) {
-          dispatch(setApplications({ applications: appData }));
-        }
-      } catch (error) {
-        alert(error);
-      }
-    };
-    getApplication();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appData, dispatch]);
+    // Fetch the latest data with refetch
+    refetch();
+  }, [refetch]);
 
   useEffect(() => {
     const getTaskStatus = async () => {
@@ -74,7 +76,7 @@ const Dashboard = () => {
   const totalOffered = applications.filter(
     (status) => status.status === "Offered"
   ).length;
-  
+
   const totalRejected = applications.filter(
     (status) => status.status === "Rejected"
   ).length;
@@ -109,7 +111,7 @@ const Dashboard = () => {
 
   return (
     <Box m="1.5rem 2.5rem 1.5rem 2.5rem">
-      {appData?.length > 0 && task?.length > 0 ? (
+      {appData && taskData ? (
         <Box
           mt="1.125rem"
           display="grid"
@@ -124,7 +126,11 @@ const Dashboard = () => {
         >
           <StatsBox title="Total Applied" value={totalApplied} />
           <StatsBox title="Total Interviewing" value={totalInterviewing} />
-          <StatsBox title="Total Offered" value={totalOffered} isOffered={true}/>
+          <StatsBox
+            title="Total Offered"
+            value={totalOffered}
+            isOffered={true}
+          />
           <StatsBox title="Total Rejected" value={totalRejected} />
 
           <Box gridColumn="span 4" gridRow="span 5">
@@ -350,7 +356,7 @@ const Dashboard = () => {
         </Box>
       ) : (
         <Box mt="28vh">
-          <LoadingImg content={"Loading ..."}/>
+          <LoadingImg content={"Loading ..."} />
         </Box>
       )}
     </Box>

@@ -377,7 +377,7 @@ const CompanyForm = ({ onClose, editMode }) => {
                       sx={{
                         m: "2rem 0 1rem 0",
                         p: "1rem",
-                        backgroundColor: theme.palette.primary.light,
+                        backgroundColor: theme.palette.primary.dark,
                         color: theme.palette.primary.main,
                         borderRadius: "0.625rem",
                         fontSize: "16px",

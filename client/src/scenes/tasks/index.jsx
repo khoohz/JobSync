@@ -167,8 +167,8 @@ const Tasks = () => {
                             p="1.1rem 1rem 1rem 1rem"
                             sx={{
                               borderRadius: "50%",
-                              backgroundColor: theme.palette.primary.light,
-                              color: theme.palette.primary.dark,
+                              backgroundColor: theme.palette.primary.dark,
+                              color: theme.palette.primary.main,
                               width: "1.5rem",
                               height: "1.5rem",
                               textAlign: "center",
