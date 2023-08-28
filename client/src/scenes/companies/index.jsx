@@ -266,38 +266,42 @@ const Companies = () => {
   };
 
   return (
-    <>
-      {data && (
-        <Box m="1.5rem 0rem 1.5rem 2.5rem">
-          <FlexBetween>
-            <Header title="Companies" />
-            <Box pr="4rem">
-              <Button
-                variant="contained"
-                startIcon={<AddIcon />}
-                onClick={() => {
-                  handleCreateForm();
-                }}
-                sx={{
-                  p: "0.5rem 1rem 0.4rem 1rem",
-                  backgroundColor: theme.palette.primary.main,
-                  color: theme.palette.background.alt,
-                  borderRadius: "0.625rem",
-                  fontSize: "1rem",
-                  fontWeight: "600",
-                  boxShadow: "none",
-                  "&:hover": {
-                    color: theme.palette.primary.main,
-                    backgroundColor: theme.palette.primary.light,
-                    boxShadow: "none",
-                  },
-                }}
-              >
-                Create
-              </Button>
-            </Box>
-          </FlexBetween>
-          {data.length > 0 && !isLoading && (
+    <Box m="1.5rem 0rem 1.5rem 2.5rem">
+      <FlexBetween>
+        <Header title="Companies" />
+        <Box pr="4rem">
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => {
+              handleCreateForm();
+            }}
+            sx={{
+              p: "0.5rem 1rem 0.4rem 1rem",
+              backgroundColor: theme.palette.primary.main,
+              color: theme.palette.background.alt,
+              borderRadius: "0.625rem",
+              fontSize: "1rem",
+              fontWeight: "600",
+              boxShadow: "none",
+              "&:hover": {
+                color: theme.palette.primary.main,
+                backgroundColor: theme.palette.primary.light,
+                boxShadow: "none",
+              },
+            }}
+          >
+            Create
+          </Button>
+        </Box>
+      </FlexBetween>
+      {isLoading ? (
+        <Box mt="25vh">
+          <LoadingImg content="Loading companies ..." />
+        </Box>
+      ) : (
+        <>
+          {data && data.length > 0 ? (
             <Box
               mt="1.25rem"
               mr="2.5rem"
@@ -339,6 +343,10 @@ const Companies = () => {
                 )
               )}
             </Box>
+          ) : (
+            <Box mt="25vh">
+              <LoadingImg content="No company" />
+            </Box>
           )}
 
           {isFormOpen && (
@@ -349,22 +357,9 @@ const Companies = () => {
               editMode={isEdit}
             />
           )}
-
-          {isLoading && ( // Check if loading
-            <Box mt="25vh">
-              <LoadingImg content="Loading companies ..." />
-            </Box>
-          )}
-
-          {data.length === 0 &&
-            !isLoading && ( // Check if data is empty and not loading
-              <Box mt="25vh">
-                <LoadingImg content="No company" />
-              </Box>
-            )}
-        </Box>
+        </>
       )}
-    </>
+    </Box>
   );
 };
 
