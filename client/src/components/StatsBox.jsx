@@ -14,7 +14,7 @@ const StatsBox = ({ title, value, isOffered }) => {
           justifyContent="space-around"
           p="1.25rem 1.2rem"
           flex=" 1 1 100%"
-          backgroundColor={theme.palette.primary.light}
+          backgroundColor={theme.palette.primary.dark}
           borderRadius="0.55rem"
         >
           <Typography

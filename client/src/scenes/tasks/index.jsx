@@ -168,7 +168,7 @@ const Tasks = () => {
                             sx={{
                               borderRadius: "50%",
                               backgroundColor: theme.palette.primary.light,
-                              color: theme.palette.font.light,
+                              color: theme.palette.primary.dark,
                               width: "1.5rem",
                               height: "1.5rem",
                               textAlign: "center",
@@ -205,7 +205,8 @@ const Tasks = () => {
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 sx={{
-                                  padding: "0.8rem 0.9rem 0.4rem 0.9rem" ,
+                                  padding: "0.8rem 0.9rem 0.4rem 0.9rem",
+                                  backgroundColor: theme.palette.neutral.main,
                                   marginBottom: "1rem",
                                   borderRadius: "0.5rem",
                                   cursor: snapshot.isDragging
@@ -235,23 +236,41 @@ const Tasks = () => {
                                   gutterBottom
                                   sx={{ color: theme.palette.font.light }}
                                 >
-                                  Deadline: {task.deadline ? new Date(task.deadline).toLocaleDateString("en-GB") : "-"}
+                                  Deadline:{" "}
+                                  {task.deadline
+                                    ? new Date(
+                                        task.deadline
+                                      ).toLocaleDateString("en-GB")
+                                    : "-"}
                                 </Typography>
-                                <Box sx={{pt: "0.15rem", borderTop: "3px solid ", borderColor: theme.palette.background.alt}}>
-                                <Typography
-                                  variant="h7"
-                                  fontWeight="500"
-                                  components={{ span: "span" }}
-                                  sx={{ color: theme.palette.font.light, }}
+                                <Box
+                                  sx={{
+                                    pt: "0.15rem",
+                                    borderTop: "3px solid ",
+                                    borderColor: theme.palette.background.alt,
+                                  }}
                                 >
-                                  Last updated:{" "}
-                                  <span style={{color: theme.palette.font.main, fontWeight: "600"}}>{new Date(task.updatedAt).toLocaleDateString(
-                                    "en-GB"
-                                  ) ||
-                                    new Date(task.createdAt).toLocaleDateString(
-                                      "en-GB"
-                                    )}</span>
-                                </Typography>
+                                  <Typography
+                                    variant="h7"
+                                    fontWeight="500"
+                                    components={{ span: "span" }}
+                                    sx={{ color: theme.palette.font.light }}
+                                  >
+                                    Last updated:{" "}
+                                    <span
+                                      style={{
+                                        color: theme.palette.font.main,
+                                        fontWeight: "600",
+                                      }}
+                                    >
+                                      {new Date(
+                                        task.updatedAt
+                                      ).toLocaleDateString("en-GB") ||
+                                        new Date(
+                                          task.createdAt
+                                        ).toLocaleDateString("en-GB")}
+                                    </span>
+                                  </Typography>
                                 </Box>
                               </Card>
                             )}

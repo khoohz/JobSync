@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetDashboardAppsQuery, useGetTaskStatusQuery } from "states/api";
 import { setApplications, setTask } from "states";
@@ -23,7 +23,7 @@ const Dashboard = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isNonMediumScreen = useMediaQuery("(min-width: 75rem");
+  const isNonMediumScreen = useMediaQuery("(min-width: 1300px");
   const applications = useSelector((state) => state.auth.applications);
   const task = useSelector((state) => state.auth.task);
   const { data: taskData } = useGetTaskStatusQuery();
@@ -203,6 +203,7 @@ const Dashboard = () => {
                         key={tasks._id}
                         sx={{
                           padding: "0.8rem 0.9rem 0.4rem 0.9rem",
+                          backgroundColor: theme.palette.neutral.main,
                           marginBottom: "1rem",
                           borderRadius: "0.5rem",
                         }}
@@ -348,8 +349,8 @@ const Dashboard = () => {
           </Box>
         </Box>
       ) : (
-        <Box mt="35%">
-          <LoadingImg />
+        <Box mt="28vh">
+          <LoadingImg content={"Loading ..."}/>
         </Box>
       )}
     </Box>

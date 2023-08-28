@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useTheme, Typography } from "@mui/material";
 
-const LoadingImg = () => {
+const LoadingImg = ({content}) => {
   const theme = useTheme();
   return (
     <Box
@@ -271,7 +271,7 @@ const LoadingImg = () => {
           fontWeight="700"
           sx={{ color: theme.palette.font.main }}
         >
-          Loading ...
+          {content}
         </Typography>
       </Box>
     </Box>

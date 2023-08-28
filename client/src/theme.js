@@ -15,7 +15,7 @@ export const tokensLight = {
     700: "#2D2D33", // dark bg
     800: "#1B1C1E", // dark font
     900: "#141414",
-    1000: "#000000", 
+    1000: "#1A1A1A", 
   },
 
   primary: {
@@ -41,7 +41,7 @@ export const tokensLight = {
     600: "#a9cc7c",
     700: "#7f995d",
     800: "#47CF7C", // manually adjusted (green)
-    900: "#2a331f"
+    900: "#212121"
 },
 };
 
@@ -75,11 +75,12 @@ export const themeSettings = (mode) => {
             primary: { 
               ...tokensDark.secondary,
               main: tokensDark.secondary[500],
-              light: tokensDark.secondary[100],
+              light: tokensDark.secondary[500],
+              dark: tokensDark.secondary[100],
             },
             neutral: {
               ...tokensDark.grey,
-              main: tokensDark.grey[500],
+              main: tokensDark.grey[0],
             },
             background: {
               default: tokensDark.grey[100],
@@ -95,13 +96,13 @@ export const themeSettings = (mode) => {
             // palette values for light mode
             primary: { // done
               ...tokensLight.primary,
-              dark: tokensLight.primary[800],
+              dark: tokensLight.primary[100],
               main: tokensLight.primary[500],
               light: tokensLight.primary[100],
             },
             neutral: { // done
               ...tokensLight.grey,
-              main: tokensLight.grey[300], 
+              main: tokensLight.grey[0], 
             },
             background: { // done
               default: tokensLight.grey[10],

@@ -73,38 +73,139 @@ const Contact = ({
         // boxShadow: "none"
       }}
     >
-      <CardContent
-        mr="1.5rem"
-      >
-        <Typography variant="h4" fontWeight="700" color={theme.palette.font.main} gutterBottom>
+      <CardContent mr="1.5rem">
+        <Typography
+          variant="h4"
+          fontWeight="700"
+          color={theme.palette.font.main}
+          gutterBottom
+        >
           {name}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Email: </span> {email}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Email:{" "}
+          </span>{" "}
+          {email}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Phone number: </span> {phoneNumber}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Phone number:{" "}
+          </span>{" "}
+          {phoneNumber}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Position: </span> {position}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Position:{" "}
+          </span>{" "}
+          {position}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Department: </span> {department}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Department:{" "}
+          </span>{" "}
+          {department}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Company: </span> {company}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Company:{" "}
+          </span>{" "}
+          {company}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Location: </span> {location}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Location:{" "}
+          </span>{" "}
+          {location}
         </Typography>
-        <Typography variant="h6" fontWeight="500" color={theme.palette.font.light} >
-          LinkedIn: 
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.light}
+        >
+          LinkedIn:
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {linkedInURL}
         </Typography>
-        <Typography variant="h6" fontWeight="500" color={theme.palette.font.light} >
-          Social media: 
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.light}
+        >
+          Social media:
         </Typography>
         <Typography variant="h5" component="div">
           {otherURL}
@@ -182,7 +283,7 @@ const Contact = ({
 const Contacts = () => {
   const theme = useTheme();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const isNonMobile = useMediaQuery("(min-width:1000px");
+  const isNonMobile = useMediaQuery("(min-width:1350px");
 
   const [isEdit, setIsEdit] = useState("");
 
@@ -209,7 +310,7 @@ const Contacts = () => {
 
   return (
     <>
-      {data || !isLoading ? (
+      {data && (
         <Box m="1.5rem 0rem 1.5rem 2.5rem">
           <FlexBetween>
             <Header title="Contacts" />
@@ -239,52 +340,53 @@ const Contacts = () => {
               </Button>
             </Box>
           </FlexBetween>
-
-          <Box
-            mt="1.25rem"
-            mr="2.5rem"
-            display="grid"
-            gridTemplateColumns="repeat(3, minmax(0, 1fr))"
-            justifyContent="space-between"
-            rowGap="1.5rem"
-            columnGap="1.2rem"
-            sx={{
-              "& > div": {
-                gridColumn: isNonMobile ? undefined : "span 3",
-              },
-            }}
-          >
-            {data.map(
-              ({
-                _id,
-                name,
-                email,
-                phoneNumber,
-                position,
-                department,
-                company,
-                location,
-                linkedInURL,
-                otherURL,
-              }) => (
-                <Contact
-                  key={_id}
-                  _id={_id}
-                  name={name}
-                  email={email}
-                  phoneNumber={phoneNumber}
-                  position={position}
-                  department={department}
-                  company={company}
-                  location={location}
-                  linkedInURL={linkedInURL}
-                  otherURL={otherURL}
-                  deletedContact={deleteContact}
-                  editContact={handleEditForm}
-                />
-              )
-            )}
-          </Box>
+          {data.length > 0 && (
+            <Box
+              mt="1.25rem"
+              mr="2.5rem"
+              display="grid"
+              gridTemplateColumns="repeat(3, minmax(0, 1fr))"
+              justifyContent="space-between"
+              rowGap="1.5rem"
+              columnGap="1.2rem"
+              sx={{
+                "& > div": {
+                  gridColumn: isNonMobile ? undefined : "span 3",
+                },
+              }}
+            >
+              {data.map(
+                ({
+                  _id,
+                  name,
+                  email,
+                  phoneNumber,
+                  position,
+                  department,
+                  company,
+                  location,
+                  linkedInURL,
+                  otherURL,
+                }) => (
+                  <Contact
+                    key={_id}
+                    _id={_id}
+                    name={name}
+                    email={email}
+                    phoneNumber={phoneNumber}
+                    position={position}
+                    department={department}
+                    company={company}
+                    location={location}
+                    linkedInURL={linkedInURL}
+                    otherURL={otherURL}
+                    deletedContact={deleteContact}
+                    editContact={handleEditForm}
+                  />
+                )
+              )}
+            </Box>
+          )}
 
           {isFormOpen && (
             <ContactForm
@@ -294,13 +396,21 @@ const Contacts = () => {
               editMode={isEdit}
             />
           )}
+
+          {data.length === 0 &&
+            !isLoading && ( // Check if data is empty and not loading
+              <Box mt="28vh">
+                <LoadingImg content="No contact" />
+              </Box>
+            )}
+
+          {data.length > 0 &&
+            isLoading && ( // Check if loading
+              <Box mt="28vh">
+                <LoadingImg content="Loading contacts ..." />
+              </Box>
+            )}
         </Box>
-      ) : (
-        <>
-          <Box mt="35%">
-            <LoadingImg />
-          </Box>
-        </>
       )}
     </>
   );

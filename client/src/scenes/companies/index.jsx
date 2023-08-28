@@ -71,41 +71,102 @@ const Company = ({
         // boxShadow: "none"
       }}
     >
-      <CardContent
-        mr="1.5rem"
-      >
-        <Typography variant="h4" fontWeight="700" color={theme.palette.font.main} gutterBottom>
+      <CardContent mr="1.5rem">
+        <Typography
+          variant="h4"
+          fontWeight="700"
+          color={theme.palette.font.main}
+          gutterBottom
+        >
           {name}
         </Typography>
-        <Typography variant="h6" fontWeight="500" color={theme.palette.font.light} >
-          Available positions: 
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.light}
+        >
+          Available positions:
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom>
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+        >
           {position}
         </Typography>
-        <Typography variant="h6" fontWeight="500" color={theme.palette.font.light} >
-          Company size: 
-        </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom>
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Company size:{" "}
+          </span>{" "}
           {companySize}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} gutterBottom components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Location: </span> {location}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          gutterBottom
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Location:{" "}
+          </span>{" "}
+          {location}
         </Typography>
-        <Typography variant="h6" fontWeight="500" color={theme.palette.font.light} >
-          Company website: 
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.light}
+        >
+          Company website:
         </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h6" gutterBottom>
           {websiteURL}
         </Typography>
-        <Typography variant="h6" fontWeight="500" color={theme.palette.font.light} >
-          LinkedIn: 
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.light}
+        >
+          LinkedIn:
         </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h6" gutterBottom>
           {linkedInURL}
         </Typography>
-        <Typography variant="h5" fontWeight="500" color={theme.palette.font.main} components={{ span: "span" }}>
-        <span style={{color: theme.palette.font.light, fontSize: "1rem", fontWeight:"500"}}>Rating: </span> {rating}
+        <Typography
+          variant="h6"
+          fontWeight="500"
+          color={theme.palette.font.main}
+          components={{ span: "span" }}
+        >
+          <span
+            style={{
+              color: theme.palette.font.light,
+              fontSize: "1rem",
+              fontWeight: "500",
+            }}
+          >
+            Rating:{" "}
+          </span>{" "}
+          {rating}
         </Typography>
       </CardContent>
       <CardActions>
@@ -180,7 +241,7 @@ const Company = ({
 const Companies = () => {
   const theme = useTheme();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const isNonMobile = useMediaQuery("(min-width:1000px");
+  const isNonMobile = useMediaQuery("(min-width:1350px");
   const [isEdit, setIsEdit] = useState("");
 
   const { data, isLoading, refetch } = useGetCompaniesQuery();
@@ -206,7 +267,7 @@ const Companies = () => {
 
   return (
     <>
-      {data || !isLoading ? (
+      {data && (
         <Box m="1.5rem 0rem 1.5rem 2.5rem">
           <FlexBetween>
             <Header title="Companies" />
@@ -236,48 +297,49 @@ const Companies = () => {
               </Button>
             </Box>
           </FlexBetween>
-
-          <Box
-            mt="1.25rem"
-            mr="2.5rem"
-            display="grid"
-            gridTemplateColumns="repeat(3, minmax(0, 1fr))"
-            justifyContent="space-between"
-            rowGap="1.5rem"
-            columnGap="1.2rem"
-            sx={{
-              "& > div": {
-                gridColumn: isNonMobile ? undefined : "span 3",
-              },
-            }}
-          >
-            {data.map(
-              ({
-                _id,
-                name,
-                position,
-                companySize,
-                location,
-                websiteURL,
-                linkedInURL,
-                rating,
-              }) => (
-                <Company
-                  key={_id}
-                  _id={_id}
-                  name={name}
-                  position={position}
-                  companySize={companySize}
-                  location={location}
-                  linkedInURL={linkedInURL}
-                  websiteURL={websiteURL}
-                  rating={rating}
-                  deletedCompany={deleteCompany}
-                  editCompany={handleEditForm}
-                />
-              )
-            )}
-          </Box>
+          {data.length > 0 && (
+            <Box
+              mt="1.25rem"
+              mr="2.5rem"
+              display="grid"
+              gridTemplateColumns="repeat(3, minmax(0, 1fr))"
+              justifyContent="space-between"
+              rowGap="1.5rem"
+              columnGap="1.2rem"
+              sx={{
+                "& > div": {
+                  gridColumn: isNonMobile ? undefined : "span 3",
+                },
+              }}
+            >
+              {data.map(
+                ({
+                  _id,
+                  name,
+                  position,
+                  companySize,
+                  location,
+                  websiteURL,
+                  linkedInURL,
+                  rating,
+                }) => (
+                  <Company
+                    key={_id}
+                    _id={_id}
+                    name={name}
+                    position={position}
+                    companySize={companySize}
+                    location={location}
+                    linkedInURL={linkedInURL}
+                    websiteURL={websiteURL}
+                    rating={rating}
+                    deletedCompany={deleteCompany}
+                    editCompany={handleEditForm}
+                  />
+                )
+              )}
+            </Box>
+          )}
 
           {isFormOpen && (
             <CompanyForm
@@ -287,13 +349,21 @@ const Companies = () => {
               editMode={isEdit}
             />
           )}
+
+          {data.length === 0 &&
+            !isLoading && ( // Check if data is empty and not loading
+              <Box mt="28vh">
+                <LoadingImg content="No company" />
+              </Box>
+            )}
+
+          {data.length > 0 &&
+            isLoading && ( // Check if loading
+              <Box mt="28vh">
+                <LoadingImg content="Loading companies ..." />
+              </Box>
+            )}
         </Box>
-      ) : (
-        <>
-          <Box mt="35%">
-            <LoadingImg />
-          </Box>
-        </>
       )}
     </>
   );
