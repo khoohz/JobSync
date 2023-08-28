@@ -37,7 +37,7 @@ const Login = () => {
       <FlexBetween>
         <Box
           width={isNonMobile ? "42%" : "90%"}
-          p={isNonMobile ? "6.5rem 0 6.5rem 20% " : "20% 10% 5% 20%"}
+          p={isNonMobile ? "10vh 0 6.5rem 20% " : "20% 10% 5% 20%"}
         >
           <Typography
             fontWeight="600"
@@ -80,7 +80,8 @@ const Login = () => {
             src={loginImageBoy}
             height="auto"
             width="43.5%"
-            pt="4.5rem"
+            pt="2.5rem"
+            mb="2rem"
           />
         )}
       </FlexBetween>

@@ -304,6 +304,7 @@ const Form = ({ onPageTypeChange, isLogin, isRegister }) => {
               }}
               variant="h6"
               textAlign="center"
+              mb="3rem"
               sx={{
                 textDecoration: "underline",
                 color: theme.palette.font.main,
