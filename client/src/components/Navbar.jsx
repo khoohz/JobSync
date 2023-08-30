@@ -73,7 +73,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={`http://localhost:5001/assets/${user.picturePath}`}
+                src={`${process.env.REACT_APP_BASE_URL}/assets/${user.picturePath}`}
                 height="32px"
                 width="32px"
                 borderRadius="50%"

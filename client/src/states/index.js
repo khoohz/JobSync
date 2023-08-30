@@ -51,8 +51,7 @@ export const authSlice = createSlice({
     setTask: (state, action) => {
       state.task = action.payload.task;
     },
-  }
-  ,
+  },
 });
 
 export const {
