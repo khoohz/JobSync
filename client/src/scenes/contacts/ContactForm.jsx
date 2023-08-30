@@ -47,7 +47,6 @@ const initialValues = {
 };
 
 const ContactForm = ({ onClose, editMode }) => {
-  console.log("🚀 ~ file: ContactForm.jsx:50 ~ ContactForm ~ editMode:", editMode)
   const theme = useTheme();
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const userId = useSelector((state) => state.auth.user._id);

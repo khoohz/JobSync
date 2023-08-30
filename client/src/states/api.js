@@ -40,7 +40,7 @@ export const api = createApi({
         method: "POST",
         body: body,
       }),
-      providesTags: ["Applications"],
+      invalidatesTags: ["Applications"],
     }),
     deleteApplication: build.mutation({
       query: (body) => ({
@@ -56,7 +56,7 @@ export const api = createApi({
         method: "PUT",
         body: body,
       }),
-      providesTags: ["Applications"],
+      invalidatesTags: ["Applications"],
     }),
     /////////////////////////////////
     getTaskStatus: build.query({
@@ -69,7 +69,7 @@ export const api = createApi({
         method: "POST",
         body: body,
       }),
-      providesTags: ["Tasks"],
+      invalidatesTags: ["Tasks"],
     }),
     updateTaskPosition: build.mutation({
       query: (body) => ({
@@ -77,7 +77,7 @@ export const api = createApi({
         method: "PUT",
         body: body,
       }),
-      providesTags: ["Tasks"],
+      invalidatesTags: ["Tasks"],
     }),
     updateTask: build.mutation({
       query: ({ taskId, title, company, deadline, content }) => ({
@@ -85,7 +85,7 @@ export const api = createApi({
         method: "PUT",
         body: { title, company, deadline, content },
       }),
-      providesTags: ["Tasks"],
+      invalidatesTags: ["Tasks"],
     }),
     deleteTask: build.mutation({
       query: (id) => ({
@@ -109,7 +109,7 @@ export const api = createApi({
         method: "POST",
         body: body,
       }),
-      providesTags: ["Contacts"],
+      invalidatesTags: ["Contacts"],
     }),
     updateContact: build.mutation({
       query: ({
@@ -140,14 +140,14 @@ export const api = createApi({
           userId,
         },
       }),
-      providesTags: ["Contacts"],
+      invalidatesTags: ["Contacts"],
     }),
     deleteContact: build.mutation({
       query: (id) => ({
         url: `contacts/delete/${id}`,
         method: "DELETE",
       }),
-      providesTags: ["Contacts"],
+      invalidatesTags: ["Contacts"],
     }),
     ////////////////////////////////////
     getCompanies: build.query({
@@ -164,19 +164,17 @@ export const api = createApi({
         method: "POST",
         body: body,
       }),
-      providesTags: ["Companies"],
+      invalidatesTags: ["Companies"],
     }),
     updateCompany: build.mutation({
       query: ({
         name,
-        email,
-        phoneNumber,
         position,
-        department,
-        company,
+        companySize,
         location,
+        websiteURL,
         linkedInURL,
-        otherURL,
+        rating,
         userId,
         companyId,
       }) => ({
@@ -184,25 +182,23 @@ export const api = createApi({
         method: "PUT",
         body: {
           name,
-          email,
-          phoneNumber,
-          position,
-          department,
-          company,
-          location,
-          linkedInURL,
-          otherURL,
-          userId,
+        position,
+        companySize,
+        location,
+        websiteURL,
+        linkedInURL,
+        rating,
+        userId,
         },
       }),
-      providesTags: ["Companies"],
+      invalidatesTags: ["Companies"],
     }),
     deleteCompany: build.mutation({
       query: (id) => ({
         url: `companies/delete/${id}`,
         method: "DELETE",
       }),
-      providesTags: ["Companies"],
+      invalidatesTags: ["Companies"],
     }),
     ////////////////////////////////
     getDashboardApps: build.query({
@@ -240,5 +236,4 @@ export const {
   useCreateCompanyMutation,
   useUpdateCompanyMutation,
   useDeleteCompanyMutation,
-
 } = api;

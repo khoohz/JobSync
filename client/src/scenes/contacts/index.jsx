@@ -207,7 +207,7 @@ const Contact = ({
         >
           Social media:
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {otherURL}
         </Typography>
       </CardContent>
