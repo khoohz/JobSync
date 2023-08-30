@@ -76,7 +76,7 @@ const Applications = () => {
     {
       field: "salary",
       headerName: "Salary",
-      flex: 0.35,
+      flex: 0.3,
     },
     {
       field: "status",
