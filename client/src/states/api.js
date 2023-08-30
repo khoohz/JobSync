@@ -48,7 +48,7 @@ export const api = createApi({
         method: "DELETE",
         body: body,
       }),
-      providesTags: ["Applications"],
+      invalidatesTags: ["Applications"],
     }),
     updateApplication: build.mutation({
       query: (body) => ({
@@ -92,7 +92,7 @@ export const api = createApi({
         url: `tasks/delete/${id}`,
         method: "DELETE",
       }),
-      providesTags: ["Tasks"],
+      invalidatesTags: ["Tasks"],
     }),
     ////////////////////////////////////
     getContacts: build.query({

@@ -25,24 +25,27 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const isNonMediumScreen = useMediaQuery("(min-width: 1300px");
   const applications = useSelector((state) => state.auth.applications);
+  console.log("🚀 ~ file: index.jsx:28 ~ Dashboard ~ applications:", applications)
   
   const task = useSelector((state) => state.auth.task);
   const { data: taskData } = useGetTaskStatusQuery();
-  const { data: appData, isLoading: appLoading, refetch } = useGetApplicationsQuery({
-    onSuccess: (data) => {
-      if (data.length > 0) {
-        console.log("trigger");
-        dispatch(setApplications({ applications: data }));
-      }
-    }
-  });
+  const { data: appData, isLoading: appLoading, refetch } = useGetApplicationsQuery();
   const mode = useSelector((state) => state.auth.mode);
   const isLightMode = mode === "light";
 
   useEffect(() => {
-    // Fetch the latest data with refetch
     refetch();
-  }, [refetch]);
+    const getApplications = async () => {
+      try {
+        if (appData) {
+          dispatch(setApplications({ applications: appData }));
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+    getApplications();
+  }, [appData, refetch, dispatch]);
 
   useEffect(() => {
     const getTaskStatus = async () => {

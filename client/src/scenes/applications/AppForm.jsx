@@ -45,7 +45,6 @@ const AppForm = ({ handleCloseForm }) => {
   const dispatch = useDispatch();
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const userId = useSelector((state) => state.auth.user._id);
-  const applications = useSelector((state) => state.auth.applications);
 
   const [addApplication] = useCreateApplicationMutation();
 
